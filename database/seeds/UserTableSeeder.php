@@ -17,18 +17,21 @@ class UserTableSeeder extends Seeder
             [
                 'name' =>'ロイド・フォージャー',
                 'email'=>'roid@mail.com',
+                'password' => 1111,
                 'age' =>'28',
                 'image' =>'url.roid'
             ],
             [
                 'name' =>'アーニャ・フォージャー',
                 'email'=>'a-nya@mail.com',
+                'password' => 2222,
                 'age' =>'5',
                 'image' =>'url.a-nya'
             ],
             [
                 'name' =>'ヨル・フォージャー',
                 'email'=>'yoru@mail.com',
+                'password' => 3333,
                 'age' =>'27',
                 'image' =>'url.yoru'
             ]
