@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $table = 'posts_table';
+    protected $table = 'posts';
     
-    use HasFactory;
+    protected $fillable = [
+        'body',
+        'user_id'
+    ];
     
-    public function users(){
-        return $this->belongTo('app\User');
+    public function user(){
+        return $this->belongsTo('app\User');
     }
     
     #public function users(){
@@ -25,4 +28,10 @@ class Post extends Model
     public function post_replies(){
         return $this->hasMany('app\Post_Reply');
     }
+    
+    public function getorderBy(){
+        return $this->orderBy('updated_at', 'DESC')->get();
+    }
+    
+    
 }

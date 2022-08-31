@@ -30,7 +30,7 @@ class User extends Authenticatable
     }
     
     public function users(){
-        return $this->belongsToManyhasMany('app\User');
+        return $this->belongsToMany('app\User');
     }
     
     public function pets(){

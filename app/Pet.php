@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pet extends Model
 {
-    protected $table = 'pets_table';
-    
-    use HasFactory;
+    protected $table = 'pets';
     
     public function users(){
-        return $this->belongTo('app\User');
+        return $this->belongsTo('app\User');
     }
 }

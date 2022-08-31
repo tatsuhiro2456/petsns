@@ -15,7 +15,7 @@ class PostTableSeeder extends Seeder
         [
             [
                 'body' => '犬の名前はハチです',
-                'image_path' => 'url.torakiti',
+                'image_path' => 'url.hachi',
                 'user_id' => '1'
                 
             ],
