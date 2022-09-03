@@ -22,6 +22,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/';
+    
+    public const PET = '/pet_register';
 
     /**
      * Define your route model bindings, pattern filters, etc.

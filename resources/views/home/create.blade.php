@@ -20,6 +20,16 @@
                 <textarea name="post[image_path]" placeholder="画像"></textarea>
             </div>
             -->
+            <div class='content'>
+                <h2>コンテンツ</h2>
+                @foreach( $contents as $content)
+                    <label>
+                        <input type="checkbox" value="{{ $content->id }}" name="contents_array[]">
+                            {{$content->type}}
+                        </input>
+                    </label>
+                @endforeach
+            </div>
             <input type="submit" value="投稿"/>
         </form>
         <div class="back">[<a href="/">[戻る]</a>]</div>

@@ -17,22 +17,22 @@ class UserTableSeeder extends Seeder
             [
                 'name' =>'ロイド・フォージャー',
                 'email'=>'roid@mail.com',
-                'password' => 11111111,
-                'age' =>'28',
+                'password' => '11111111',
+                'birthday' =>'1999/10/14',
                 'image' =>'url.roid'
             ],
             [
                 'name' =>'アーニャ・フォージャー',
                 'email'=>'a-nya@mail.com',
-                'password' => 22222222,
-                'age' =>'5',
+                'password' => '22222222',
+                'birthday' =>'2015/10/16',
                 'image' =>'url.a-nya'
             ],
             [
                 'name' =>'ヨル・フォージャー',
                 'email'=>'yoru@mail.com',
-                'password' => 33333333,
-                'age' =>'27',
+                'password' => '33333333',
+                'birthday' =>'2000/10/17',
                 'image' =>'url.yoru'
             ]
         ];

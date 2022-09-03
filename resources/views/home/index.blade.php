@@ -15,10 +15,16 @@
 <div class='posts'>
     @foreach ($posts as $post)
         <div class='post'>
-            <h6>User:[{{ $post->user->name }}]</h6>
             <!--<h3 class='image'>{{ $post->image_path}}</h3>-->
             <p class='body'>{{ $post->body}}</p>
+            <h6>User:[{{ $post->user->name }}]</h6>
+            <h6>[{{ $post->created_at }}]</h6>
         </div>
+        <h6 class='content'>
+            @foreach($post->contents as $content)
+                {{ $content->type}}
+            @endforeach
+        </h6>
     @endforeach
 </div>
 

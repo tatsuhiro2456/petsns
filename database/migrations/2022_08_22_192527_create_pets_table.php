@@ -6,30 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePetsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('pets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name',15);
             $table->string('type');
-            $table->string('image');
-            $table->unsignedBigInteger('user_id');
+            $table->string('image')->nullable();
+            $table->BigInteger('user_id')->unsigned();
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('pets');

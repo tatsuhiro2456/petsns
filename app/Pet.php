@@ -8,7 +8,9 @@ class Pet extends Model
 {
     protected $table = 'pets';
     
-    public function users(){
-        return $this->belongsTo('app\User');
+    protected $fillable = ['name', 'type', 'image', 'user_id'];
+    
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 }

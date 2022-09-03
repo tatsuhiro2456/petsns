@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Post_Reply extends Model
 {
     public function posts(){
-        return $this->belongTo('app\Post');
+        return $this->belongTo('App\Post');
     }
 }

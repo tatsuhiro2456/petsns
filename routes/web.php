@@ -17,5 +17,7 @@ Route::group(['middleware' =>['auth']], function(){
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/posts', 'PostController@index');
     Route::post('/posts', 'PostController@store');
+    Route::get('/pet_register', 'PetController@add')->name('pet_add');
+    Route::post('/pet_register', 'PetController@register')->name('pet_register');
     Route::get('/posts/create', 'PostController@create');
 });
