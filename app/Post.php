@@ -32,7 +32,7 @@ class Post extends Model
     }
     
     public function getorderBy(){
-        return $this->orderBy('updated_at', 'DESC')->get();
+        return $this::with('contents')->orderBy('updated_at', 'DESC')->get();
     }
     
     

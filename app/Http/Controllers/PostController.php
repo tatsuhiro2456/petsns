@@ -28,5 +28,10 @@ class PostController extends Controller
         $post->contents()->attach($input_contents); 
         return redirect('/');
     }
+    
+    public function map()
+    {
+        return view('home/cafeserch');
+    }
 
 }
