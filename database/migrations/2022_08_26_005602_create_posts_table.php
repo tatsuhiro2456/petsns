@@ -14,6 +14,8 @@ class CreatePostsTable extends Migration
             $table->string('image_path')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+            $table->text('public_id')->nullable();
+            $table->string('mimetype')->nullable();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

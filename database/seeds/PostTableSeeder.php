@@ -15,18 +15,18 @@ class PostTableSeeder extends Seeder
         [
             [
                 'body' => '犬の名前はハチです',
-                'image_path' => 'url.hachi',
+                'image_path' => 'https://res.cloudinary.com/dgrrdt1vv/image/upload/v1664107258/neko_gydzat.jpg',
                 'user_id' => '1'
                 
             ],
             [
                 'body' =>'猫の名前はトラキチです',
-                'image_path' =>'url.torakiti',
+                'image_path' =>'https://res.cloudinary.com/dgrrdt1vv/image/upload/v1664107258/neko_gydzat.jpg',
                 'user_id'=> '2'
             ],
             [
                 'body' => '犬の名前はケンです',
-                'image_path' => 'url.ken',
+                'image_path' => 'https://res.cloudinary.com/dgrrdt1vv/image/upload/v1664107258/neko_gydzat.jpg',
                 'user_id' => '3'
             ]
         ];

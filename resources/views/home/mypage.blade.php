@@ -1,18 +1,30 @@
 @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
 @section('content')
-
     <h3><a href='/mypage'>・マイページ</a></h3>
     <h3>・ペットランキング</h3>
     <h3>・散歩募集</h3>
     <h3><a href='/cafeserch'>・犬・猫カフェ検索</a></h3>
     <h1><a href='/'>タイムライン</a></h1>
-    <h2><a href="/contents/1">＃可愛い</a><h2>
-    <h2><a href="/contents/2">＃面白い</a><h2>
-    <h2><a href="/contents/3">＃ペット自慢</a><h2>
-    <div>[<a href='/posts/create'>投稿</a>]</div>
-    <div class='posts'>
-        @foreach ($posts as $post)
+    
+    <h1>マイページ</h1>
+    <div class="user">
+        <h3>ユーザー</h3>
+        <p>名前：{{Auth::user()->name}}</p>
+        <p>誕生日：{{Auth::user()->birthday}}</p>
+        <p>ユーザー画像：{{Auth::user()->image}}</p>
+    </div>
+    
+    <div class="pet">
+        <h3>ペット紹介</h3>
+        <p>ペットの種類：{{$pet->type}}</p>
+        <p>ペットの名前：{{$pet->name}}</p>
+        <p>ペット画像：{{$pet->image}}</p>
+    </div>
+    
+    <div class="posts">
+    @foreach ($posts as $post)
+        <div class='post'>
             <div class='post'>
                 <h3 class='image'>メディア:</h3>
                     @if($post->mimetype == 'video/mp4')
@@ -29,7 +41,19 @@
                     <a href="/contents/{{ $content->id }}">＃{{ $content->type }}</a>
                 @endforeach
             </h6>
-        @endforeach
-    </div>
+        <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
+            @csrf
+            @method('DELETE')
+            <h5><button type="submit">削除</button></h5> 
+        </form>
+    @endforeach
+
+</div>
+
+    <div class="back">[<a href="/">[戻る]</a>]</div>
+    
+
+    
+
 
 @endsection

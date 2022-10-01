@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Follow;
 
 class User extends Authenticatable
 {
@@ -26,18 +27,26 @@ class User extends Authenticatable
     ];
     
     public function posts(){
-        return $this->hasMany('app\Post');
+        return $this->hasMany('App\Post');
     }
     
-    public function users(){
-        return $this->belongsToMany('app\User');
+    public function following(){
+        return $this->belongsToMany('App\User', 'follows', 'following_id', 'followed_id');
     }
     
+    public function followed(){
+        return $this->belongsToMany('App\User', 'follows', 'followed_id', 'following_id');
+    }
+
     public function pets(){
-        return $this->hasMany('app\Pet');
+        return $this->hasMany('App\Pet');
     }
     
     #public function posts(){
     #    return $this->belongsToMany('app\Post');
     #}
+    
+    public function is_follow(){
+        return !is_null(Follow::where('following_id', \Auth::user()->id)->where('followed_id', $this->id)->first());
+    }
 }

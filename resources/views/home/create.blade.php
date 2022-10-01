@@ -4,16 +4,14 @@
 <body>
     <a>{{Auth::user()->name}}</a>
     <h1>投稿</h1>
-    <form action="/posts" method="POST">
+    <form action="/posts" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body">
             <textarea name="post[body]" placeholder="内容"></textarea>
         </div>
-        <!--
         <div class="image_path">
-            <textarea name="post[image_path]" placeholder="画像"></textarea>
+            写真：<input type="file" name="image_path">
         </div>
-        -->
         <div class='content'>
             <h2>コンテンツ</h2>
             @foreach( $contents as $content)

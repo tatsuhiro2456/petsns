@@ -12,4 +12,8 @@ class Content extends Model
     public function posts(){
         return $this->belongsToMany('App\Post');
     }
+    public function getByContent()
+    {
+        return $this->posts()->with('contents')->orderBy('updated_at', 'DESC')->get();
+    }
 }

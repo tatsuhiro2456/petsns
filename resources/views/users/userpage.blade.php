@@ -1,16 +1,36 @@
 @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
 @section('content')
-
     <h3><a href='/mypage'>・マイページ</a></h3>
     <h3>・ペットランキング</h3>
     <h3>・散歩募集</h3>
     <h3><a href='/cafeserch'>・犬・猫カフェ検索</a></h3>
     <h1><a href='/'>タイムライン</a></h1>
-    <h2><a href="/contents/1">＃可愛い</a><h2>
-    <h2><a href="/contents/2">＃面白い</a><h2>
-    <h2><a href="/contents/3">＃ペット自慢</a><h2>
-    <div>[<a href='/posts/create'>投稿</a>]</div>
+
+
+    <h1>ユーザーページ</h1>
+    <div class='user'>
+        <h3>ユーザー</h3>
+        <p>名前：{{$user->name}}</p>
+        <p>誕生日：{{$user->birthday}}</p>
+        <p>ユーザー画像：{{$user->image}}</p>
+    </div>
+    <div class='pet'>
+        <h3>ペット紹介</h3>
+        <p>ペットの種類：{{$pet->type}}</p>
+        <p>ペットの名前：{{$pet->name}}</p>
+        <p>ペット画像：{{$pet->image}}</p>
+    </div>
+    
+    <div class="follow">
+        @if($user->is_follow())
+            <a href='/userpage/{{$user->id}}/unfollow' class="btn btn-success btn-sm">フォロー解除</a>
+        @else
+            <a href='/userpage/{{$user->id}}/follow' class="btn btn-success btn-sm">フォロー</a>
+        @endif
+    </div>
+    
+    
     <div class='posts'>
         @foreach ($posts as $post)
             <div class='post'>
@@ -31,5 +51,11 @@
             </h6>
         @endforeach
     </div>
+
+    
+    <div class="back">[<a href="/">[戻る]</a>]</div>
+
+    
+
 
 @endsection

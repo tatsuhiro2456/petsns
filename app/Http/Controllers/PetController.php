@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Pet;
 use App\User;
+use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PetController extends Controller
 {
