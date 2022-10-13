@@ -3,10 +3,24 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 class Recruitment extends Model
 {
-    public function recluitment_replies(){
-        return $this->hasMany('App\Recruitment_Reply');
+    protected $table = 'recruitments';
+    
+    protected $fillable = [
+        'title',
+        'body',
+        'user_id',
+    ];
+    
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
+    
+    public function replies(){
+        return $this->hasMany('App\Reply');
+    }
+    
 }

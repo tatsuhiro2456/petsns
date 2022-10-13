@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pet;
 use App\User;
-use App\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\PetRequest;
 use Illuminate\Support\Facades\Auth;
 
 class PetController extends Controller
@@ -15,7 +14,7 @@ class PetController extends Controller
         return view('home/pet_register');
     }
     
-    public function register(Request $request,Pet $pet)
+    public function register(Pet $pet, PetRequest $request)
     {
         $input = $request['pet'];
         $input += ['user_id' => $request->user()->id]; 
@@ -23,5 +22,4 @@ class PetController extends Controller
         
         return redirect('/');
     }
-    
 }

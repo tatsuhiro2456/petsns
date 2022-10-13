@@ -15,10 +15,10 @@
         @foreach ($posts as $post)
             <div class='post'>
                 <h3 class='image'>メディア:</h3>
-                    @if($post->mimetype == 'video/mp4')
+                    @if($post->mimetype == 'video/mp4' or $post->mimetype == 'video/mov')
                         <video src="{{$post->image_path}}" loop autoplay muted controls></video>
                     @else
-                        <img src="{{$post->image_path}}" alt="画像無し">
+                        <img src="{{$post->image_path}}" alt="画像無し"　width="100" height="100">
                     @endif
                 <h3 class='body'>本文：{{ $post->body}}</h3>
                 <h4><a href="/userpage/{{ $post->user_id}}">User:[{{ $post->user->name }}]</a></h4>
@@ -29,6 +29,13 @@
                     <a href="/contents/{{ $content->id }}">＃{{ $content->type }}</a>
                 @endforeach
             </h6>
+            <div class="like">
+                @if($post->is_like())
+                    <a href="{{ route('post_unlike', ['id' => $post->id]) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
+                 @else
+                    <a href="{{ route('post_like', ['id' => $post->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post->likes->count() }}</span></a>
+                 @endif
+            </div>
         @endforeach
     </div>
 

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use App\Post;
-use Illuminate\Http\Request;
+use App\Comment;
+use App\Http\Requests\PostRequest;
+use App\Http\Requests\CommentRequest;
 use Cloudinary;
 
 class PostController extends Controller
@@ -18,54 +20,77 @@ class PostController extends Controller
     {
         return view('home/create')->with(['contents' => $content->get()]);
     }
-    
-    /*public function store(Request $request, Post $post)
-    {
-        $input_post = $request['post'];
-        $input_post += ['user_id' => $request->user()->id]; 
-        $input_contents = $request->contents_array;
-        
-        $post->fill($input_post)->save();
-        $post->contents()->attach($input_contents); 
-        return redirect('/');
-    }
-    */
-    
-    public function imgstore(Request $request)
+
+    public function imgstore(PostRequest $request)
     {
         #ファイルのmimetypeを判別し、画像と動画の処理を分ける
         $mimetype = $request->file('image_path')->getMimeType();
         $post = new Post();
         $post->user_id = auth()->id();
         $post->mimetype = $mimetype;
-        if($mimetype == 'video/mp4'){
-            $post->image_path = Cloudinary::uploadVideo($request->file('image_path')->getRealPath())->getSecurePath();
+        if($mimetype == 'video/mp4' or $mimetype =='video/mov'){
+            $post->image_path = Cloudinary::uploadVideo($request->file('image_path')->getRealPath(), [
+                "height" => 300,
+                "width" => 600,
+                "crop" => "fit"
+            ])->getSecurePath();
             $post->public_id = Cloudinary::getPublicId();
             $input_contents = $request->contents_array;
             $post->body = $request->post['body'];
             $post->save();
             $post->contents()->attach($input_contents);
+            
             return redirect('/');
-        }elseif($mimetype == 'image/jpeg' or 'image/png'){
-            $post->image_path = Cloudinary::upload($request->file('image_path')->getRealPath())->getSecurePath();
+        }elseif($mimetype == 'image/jpeg' or $mimetype =='image/png'){
+            $post->image_path = Cloudinary::upload($request->file('image_path')->getRealPath(), [
+                "height" => 300,
+                "width" => 300,
+                "crop" => "fit"
+            ])->getSecurePath();
             $post->public_id = Cloudinary::getPublicId();
             $input_contents = $request->contents_array;
             $post->body = $request->post['body'];
             $post->save();
             $post->contents()->attach($input_contents);
+            
             return redirect('/');
         }
     }
     
-    
     public function destroy($id)
     {
         $post = Post::find($id);
+        $comment = Comment::where('post_id', $post->id);
         if(isset($post->public_id)){
             Cloudinary::uploadApi()->Destroy($post->public_id);
         }
         $post->delete();
+        $comment->delete();
         return redirect('/mypage');
+    }
+    
+    public function comment(Post $post)
+    {
+        return view('home/comment')->with(['post' => $post]);
+    }
+    
+    public function comment_post(CommentRequest $request)
+    {
+        $comment = new Comment();
+        $comment->user_id = auth()->id();
+        $comment->body = $request->comment['body'];
+        $comment->post_id =$request->comment['post_id'];
+        $comment->save();
+        
+        return redirect('/');
+    }
+    
+    public function comment_destroy($id)
+    {
+        $comment = Comment::find($id);
+        $comment->delete();
+        
+        return redirect('/');
     }
     
 }

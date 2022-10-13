@@ -7,10 +7,12 @@
     <form action="/posts" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body">
-            <textarea name="post[body]" placeholder="内容"></textarea>
+            <textarea name="post[body]" placeholder="内容">{{ old('post.body') }}</textarea>
+            <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
         </div>
         <div class="image_path">
-            写真：<input type="file" name="image_path">
+            写真：<input type="file" name="image_path"></input>
+            <p class="file__error" style="color:red">{{ $errors->first('image_path') }}</p>
         </div>
         <div class='content'>
             <h2>コンテンツ</h2>

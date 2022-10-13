@@ -13,12 +13,12 @@ class FollowController extends Controller
             'following_id' => \Auth::user()->id,
             'followed_id' => $user->id,
         ]);
-        return redirect('/userpage/'.$user->id);
+        return redirect()->back();
     }
 
     public function unfollow(User $user) {
         $follow = Follow::where('following_id', \Auth::user()->id)->where('followed_id', $user->id)->first();
         $follow->delete();
-        return redirect('/userpage/'.$user->id);
+        return redirect()->back();
     }
 }

@@ -6,6 +6,10 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Follow;
+use App\Post;
+use App\Pet;
+use App\Like;
+use App\Recruitment;
 
 class User extends Authenticatable
 {
@@ -15,7 +19,7 @@ class User extends Authenticatable
     
     
     protected $fillable = [
-        'name', 'email', 'password', 'birthday',
+        'name', 'email', 'image', 'password', 'birthday',
     ];
 
     protected $hidden = [
@@ -42,9 +46,21 @@ class User extends Authenticatable
         return $this->hasMany('App\Pet');
     }
     
-    #public function posts(){
-    #    return $this->belongsToMany('app\Post');
-    #}
+    public function likes(){
+        return $this->hasMany('App\Like');
+    }
+    
+    public function Recruitment(){
+        return $this->hasMany('App\Recruitment');
+    }
+    
+    public function replies(){
+        return $this->hasMany('App\Reply');
+    }
+    
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
     
     public function is_follow(){
         return !is_null(Follow::where('following_id', \Auth::user()->id)->where('followed_id', $this->id)->first());

@@ -28,8 +28,5 @@ class DatabaseSeeder extends Seeder
         
         $this->call(Post_RepliesTableSeeder::class);
         
-        $this->call(RecruitmentsTableSeeder::class);
-        
-        $this->call(Recruitment_RepliesTableSeeder::class);
     }
 }

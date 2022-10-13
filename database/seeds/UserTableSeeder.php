@@ -15,21 +15,21 @@ class UserTableSeeder extends Seeder
         $params =
         [
             [
-                'name' =>'ロイド・フォージャー',
+                'name' =>'ロイド',
                 'email'=>'roid@mail.com',
                 'password' => '11111111',
                 'birthday' =>'1999/10/14',
                 'image' =>'url.roid'
             ],
             [
-                'name' =>'アーニャ・フォージャー',
+                'name' =>'ハリー',
                 'email'=>'a-nya@mail.com',
                 'password' => '22222222',
                 'birthday' =>'2015/10/16',
                 'image' =>'url.a-nya'
             ],
             [
-                'name' =>'ヨル・フォージャー',
+                'name' =>'加藤',
                 'email'=>'yoru@mail.com',
                 'password' => '33333333',
                 'birthday' =>'2000/10/17',
