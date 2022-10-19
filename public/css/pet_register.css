@@ -1,0 +1,19 @@
+/**ペット飼育有り*/
+/** チェックOFFなら非表示 */
+.checkbox_on{ 
+  display: none;
+}
+/** チェックONなら表示 */
+input:checked ~ .checkbox_on{
+  display: block;
+}
+
+/**ペット飼育なし*/
+/** チェックOFFなら表示 */
+.checkbox_off{ 
+  display: block;
+}
+/** チェックONなら非表示 */
+input:checked ~ .checkbox_off{
+  display: none;
+}
