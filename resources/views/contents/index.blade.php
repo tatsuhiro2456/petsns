@@ -3,8 +3,8 @@
 @section('content')
 
     <h3><a href='/mypage'>・マイページ</a></h3>
-    <h3>・ペットランキング</h3>
-    <h3>・散歩募集</h3>
+    <h3><a href='/ranking'>・ペットランキング</a></h3>
+    <h3><a href='/walking'>・散歩募集</h3>
     <h3><a href='/cafeserch'>・犬・猫カフェ検索</a></h3>
     <h1><a href='/'>タイムライン</a></h1>
     <h2><a href="/contents/1">＃可愛い</a><h2>
@@ -18,7 +18,7 @@
                     @if($post->mimetype == 'video/mp4' or $post->mimetype == 'video/mov')
                         <video src="{{$post->image_path}}" loop autoplay muted controls></video>
                     @else
-                        <img src="{{$post->image_path}}" alt="画像無し"　width="100" height="100">
+                        <img src="{{$post->image_path}}" alt="画像無し">
                     @endif
                 <h3 class='body'>本文：{{ $post->body}}</h3>
                 <h4><a href="/userpage/{{ $post->user_id}}">User:[{{ $post->user->name }}]</a></h4>
