@@ -11,9 +11,19 @@
             <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
         </div>
         <div class="image_path">
-            写真：<input type="file" name="image_path"></input>
+            メディア：<input type="file" name="image_path"></input>
             <p class="file__error" style="color:red">{{ $errors->first('image_path') }}</p>
         </div>
+        <div class='pet_exists'>
+            ペットは写っていますか？(写っていたらチェック)</br>
+            @foreach ($user->pets as $pet)
+                <label>
+                    <input type="checkbox"  value="{{$pet->id}}" name="pets_array[]">
+                        {{$pet->name}}
+                    </input>
+                </label>
+            @endforeach
+        </div></br>    
         <div class='content'>
             <h2>コンテンツ</h2>
             @foreach( $contents as $content)

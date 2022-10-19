@@ -2,8 +2,8 @@
 
 @section('content')
     <h3><a href='/mypage'>・マイページ</a></h3>
-    <h3>・ペットランキング</h3>
-    <h3>・散歩募集</h3>
+    <h3><a href='/ranking'>・ペットランキング</a></h3>
+    <h3><a href='/walking'>・散歩募集</h3>
     <h3><a href='/cafeserch'>・犬・猫カフェ検索</a></h3>
     <h1><a href='/'>タイムライン</a></h1>
 
@@ -17,9 +17,13 @@
     </div>
     <div class='pet'>
         <h3>ペット紹介</h3>
-        <p>ペットの種類：{{$pet->type}}</p>
-        <p>ペットの名前：{{$pet->name}}</p>
-        <p>ペット画像：{{$pet->image}}</p>
+        @if($pet)
+            <p>ペットの種類：{{$pet->type}}</p>
+            <p>ペットの名前：{{$pet->name}}</p>
+            <p>ペット画像：{{$pet->image}}</p>
+        @else
+            <p>飼育無し</p>
+        @endif
     </div>
     
     <div class="follow">

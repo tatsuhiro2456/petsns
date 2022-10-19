@@ -41,4 +41,6 @@ Route::group(['middleware' =>['auth']], function(){
     Route::get('/walking/{recruitmet}/reply', 'RecruitmentController@reply');
     Route::post('/walking/{recruitmet}/reply', 'RecruitmentController@reply_post');
     Route::delete('/walking/reply/{reply}', 'RecruitmentController@reply_destroy');
+    #Route::get('/favorite', 'PostController@favorite');
+    Route::get('/ranking', 'LikeController@ranking');
 });

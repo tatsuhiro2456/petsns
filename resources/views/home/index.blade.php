@@ -3,7 +3,7 @@
 @section('content')
 
     <h3><a href='/mypage'>・マイページ</a></h3>
-    <h3>・ペットランキング</h3>
+    <h3><a href='/ranking'>・ペットランキング</a></h3>
     <h3><a href='/walking'>・散歩募集</h3>
     <h3><a href='/cafeserch'>・犬・猫カフェ検索</a></h3>
     <h1><a href='/'>タイムライン</a></h1>

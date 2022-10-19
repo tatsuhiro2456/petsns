@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         
         $this->call(FollowsTableSeeder::class);
         
-        $this->call(Post_RepliesTableSeeder::class);
+        $this->call(Pet_PostTableSeeder::class);
         
     }
 }

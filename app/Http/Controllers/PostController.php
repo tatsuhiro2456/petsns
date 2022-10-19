@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use App\User;
+use App\Like;
 use App\Post;
 use App\Comment;
 use App\Http\Requests\PostRequest;
@@ -16,9 +18,15 @@ class PostController extends Controller
         return view('home/index')->with(['posts' => $post->getorderBy()]);
     }
     
-    public function create(Content $content)
+    /*public function favorite(User $user, Post $post,Like $like)
     {
-        return view('home/create')->with(['contents' => $content->get()]);
+        return view('home/favorite')->with(['posts' => $post->Ranking()]);
+    }*/
+    
+    public function create(Content $content, User $user)
+    {
+        $user=auth()->user();
+        return view('home/create')->with(['contents' => $content->get()])->with(['user' => $user]);
     }
 
     public function imgstore(PostRequest $request)
@@ -36,9 +44,11 @@ class PostController extends Controller
             ])->getSecurePath();
             $post->public_id = Cloudinary::getPublicId();
             $input_contents = $request->contents_array;
+            $input_pets = $request->pets_array;
             $post->body = $request->post['body'];
             $post->save();
             $post->contents()->attach($input_contents);
+            $post->pets()->attach($input_pets);
             
             return redirect('/');
         }elseif($mimetype == 'image/jpeg' or $mimetype =='image/png'){
@@ -49,9 +59,11 @@ class PostController extends Controller
             ])->getSecurePath();
             $post->public_id = Cloudinary::getPublicId();
             $input_contents = $request->contents_array;
+            $input_pets = $request->pets_array;
             $post->body = $request->post['body'];
             $post->save();
             $post->contents()->attach($input_contents);
+            $post->pets()->attach($input_pets);
             
             return redirect('/');
         }

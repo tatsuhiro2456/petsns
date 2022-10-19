@@ -1,35 +1,19 @@
 @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
 @section('content')
+
     <h3><a href='/mypage'>・マイページ</a></h3>
-    <h3><a href='/ranking'>・ペットランキング</a></h3>
+    <h3>・ペットランキング</h3>
     <h3><a href='/walking'>・散歩募集</h3>
     <h3><a href='/cafeserch'>・犬・猫カフェ検索</a></h3>
     <h1><a href='/'>タイムライン</a></h1>
-    
-    <h1>マイページ</h1>
-    <div class="user">
-        <h3>ユーザー</h3>
-        <p>名前：{{Auth::user()->name}}</p>
-        <p>誕生日：{{Auth::user()->birthday}}</p>
-        <p>ユーザー画像： <img src="{{Auth::user()->image}}" alt="画像無し"></p>
-    </div>
-    
-    <div class="pet">
-        <h3>ペット紹介</h3>
-        @if($pet)
-            <p>ペットの種類：{{$pet->type}}</p>
-            <p>ペットの名前：{{$pet->name}}</p>
-            <p>ペット画像：{{$pet->image}}</p>
-        @else
-            <p>飼育無し</p>
-        @endif
-    </div>
-    <div><a href='/mypage/edit'>登録情報変更</a></div>
-    
-    <div class="posts">
-    @foreach ($posts as $post)
-        <div class='post'>
+    <h2><a href="/contents/1">＃可愛い</a><h2>
+    <h2><a href="/contents/2">＃面白い</a><h2>
+    <h2><a href="/contents/3">＃ペット自慢</a><h2>
+        
+        @foreach ($posts as $post)
+        @foreach ($post->pets as $pet)
+        {{$pet->name}}
             <div class='post'>
                 <h3 class='image'>メディア:</h3>
                     @if($post->mimetype == 'video/mp4' or $post->mimetype == 'video/mov')
@@ -57,15 +41,17 @@
                 @foreach($post->comments as $comment)
                     コメントユーザー：{{$comment->user->name}}
                     <br>コメント内容：{{$comment->body}}
+                    @if($comment->user->id == auth()->user()->id)
+                        <form action='/posts/comment/{{$comment->id}}' id="form_{{ $comment->id }}" method="post" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <h5><button type="submit">コメント削除</button></h5> 
+                        </form>
+                    @endif
                 @endforeach
             </div>
             <h5>[<a href='/posts/{{$post->id}}/comment'>コメント</a>]</h5> 
-            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
-                @csrf
-                @method('DELETE')
-                <h5><button type="submit">削除</button></h5> 
-            </form>
-        </div>
+        @endforeach
         @endforeach
     </div>
 

@@ -2,9 +2,8 @@
 
 namespace App;
 
-use App\Content;
-use App\User;
-use App\Like;
+
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -27,9 +26,9 @@ class Post extends Model
     public function likes(){
         return $this->hasMany('App\Like');
     }
-    #public function users(){
-    #    return $this->belongsToMany('app\User');
-    #}
+    public function pets(){
+        return $this->belongsToMany('App\Pet');
+    }
     
     
     public function comments(){
@@ -44,4 +43,12 @@ class Post extends Model
         return !is_null(Like::where('post_id', $this->id)->where('user_id', \Auth::user()->id)->first());
     }
     
+    /*public function Ranking()
+    {
+        $today = Carbon::now()->format('Y-m');
+        $start = $today.'-01 00:00:00';
+        $end = $today.'-31 23:59:59';
+        
+        return $this::where('created_at', '>',$start)->where('created_at', '<', $end)->withCount('likes')->orderBy('likes_count', 'desc')->get();
+    }*/
 }

@@ -13,4 +13,13 @@ class Pet extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+    
+    public function posts(){
+        return $this->belongsToMany('App\Post');
+    }
+    
+    public function likes()
+    {
+        return $this->hasManyThrough('App\Like', 'App\Post');
+    }
 }
