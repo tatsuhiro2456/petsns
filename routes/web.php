@@ -1,5 +1,7 @@
 <?php
-
+use App\Events\MessageAdded;
+use Symfony\Component\EventDispatcher\Event;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,4 +45,7 @@ Route::group(['middleware' =>['auth']], function(){
     Route::delete('/walking/reply/{reply}', 'RecruitmentController@reply_destroy');
     #Route::get('/favorite', 'PostController@favorite');
     Route::get('/ranking', 'LikeController@ranking');
+    Route::get('/chatroom', 'ChatController@index')->middleware('auth');
+    Route::post('/newmessage', 'ChatController@newmessage');
+    Route::get('/allmessage','ChatController@allmessage');
 });
