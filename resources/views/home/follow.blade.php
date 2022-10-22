@@ -10,7 +10,6 @@
     <h2><a href="/contents/1">＃可愛い</a><h2>
     <h2><a href="/contents/2">＃面白い</a><h2>
     <h2><a href="/contents/3">＃ペット自慢</a><h2>
-    <h2><a href="/follow/index">フォロー中のユーザー</a><h2>
     <div>[<a href='/posts/create'>投稿</a>]</div>
     <div class='posts'>
         @foreach ($posts as $post)

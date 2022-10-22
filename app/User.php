@@ -5,11 +5,6 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Follow;
-use App\Post;
-use App\Pet;
-use App\Like;
-use App\Recruitment;
 
 class User extends Authenticatable
 {

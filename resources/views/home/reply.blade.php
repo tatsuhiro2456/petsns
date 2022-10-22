@@ -16,6 +16,7 @@
         <div class="body">
             <textarea name="reply[body]" placeholder="内容"></textarea>
         </div>
+        <p class="body__error" style="color:red">{{ $errors->first('reply.body') }}</p>
         <input value="{{ $recruitment->id }}" type="hidden" name="reply[recruitment_id]" />
         <input type="submit" value="返信"/>
     </form>

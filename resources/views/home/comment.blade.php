@@ -19,7 +19,7 @@
     <form action='/posts/{post}/comment' method="POST" enctype="multipart/form-data">
         @csrf
         <div class="body">
-            <textarea name="comment[body]" placeholder="内容"></textarea>
+            <textarea name="comment[body]" placeholder="内容" value="{{ old('comment.body') }}"></textarea>
         </div>
         <p class="body__error" style="color:red">{{ $errors->first('comment.body') }}</p>
         <input value="{{ $post->id }}" type="hidden" name="comment[post_id]" />

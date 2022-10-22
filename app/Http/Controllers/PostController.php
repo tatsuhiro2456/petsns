@@ -6,6 +6,7 @@ use App\Content;
 use App\User;
 use App\Like;
 use App\Post;
+use App\Follow;
 use App\Comment;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\CommentRequest;
@@ -16,6 +17,25 @@ class PostController extends Controller
     public function index(Post $post)
     {
         return view('home/index')->with(['posts' => $post->getorderBy()]);
+    }
+    
+    public function follow(Follow $follow)
+    {
+        $user=auth()->user();
+        #$userがフォローしている人のidを取得
+        $follows = Follow::where('following_id', $user->id)->get('followed_id');
+        
+        #フォローしている人のidデータのみを$follows_idに格納
+        $follows_id = [];
+        foreach($follows as $follow){
+            $followed_id = $follow->followed_id;
+            array_push($follows_id, $followed_id);
+        }
+        
+        #Postデータ内でフォローしている人のみのデータを取得
+        $posts = Post::whereIn('user_id', $follows_id)->orderBy('updated_at', 'desc')->get();
+        
+        return view('home/follow')->with(['posts' => $posts])->with(['user' => $user]);
     }
     
     /*public function favorite(User $user, Post $post,Like $like)

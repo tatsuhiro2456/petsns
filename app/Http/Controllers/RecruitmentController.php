@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Recruitment;
 use App\Reply;
+use App\Http\Requests\RecruitmentRequest;
+use App\Http\Requests\ReplyRequest;
 
 class RecruitmentController extends Controller
 {
@@ -18,7 +20,7 @@ class RecruitmentController extends Controller
         return view('home/recruitment');
     }
     
-    public function store(Request $request)
+    public function store(RecruitmentRequest $request)
     {
         $recruitment = new Recruitment();
         $recruitment->user_id = auth()->id();
@@ -44,7 +46,7 @@ class RecruitmentController extends Controller
         return redirect('/walking');
     }
     
-    public function reply_post(Request $request)
+    public function reply_post(ReplyRequest $request)
     {
         $reply = new Reply();
         $reply->user_id = auth()->id();

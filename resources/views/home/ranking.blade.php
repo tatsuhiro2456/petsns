@@ -10,20 +10,28 @@
     
     <h3>今月のいいね取得ペットランキング</h3>
     ＜犬＞</br>
-    <?php $index=1; ?>
-    @foreach($dog_likes as $dog_like)
-        {{$index}}位
-        {{$dog_like['dog_name']}}
-        [{{$dog_like['total_like']}}]</br></br>
-        <?php $index++; ?>
-    @endforeach
+    @if($dog_likes)
+        <?php $index=1; ?>
+        @foreach($dog_likes as $dog_like)
+            {{$index}}位
+            {{$dog_like['dog_name']}}
+            [{{$dog_like['total_like']}}]</br></br>
+            <?php $index++; ?>
+        @endforeach
+    @else
+        まだいいねがありません
+    @endif
     ＜猫＞</br>
-    <?php $index=1; ?>
-    @foreach($cat_likes as $cat_like)
-        {{$index}}位
-        {{$cat_like['cat_name']}}
-        [{{$cat_like['total_like']}}]</br></br>
-        <?php $index++; ?>
-    @endforeach
+    @if($cat_likes)
+        <?php $index=1; ?>
+        @foreach($cat_likes as $cat_like)
+            {{$index}}位
+            {{$cat_like['cat_name']}}
+            [{{$cat_like['total_like']}}]</br></br>
+            <?php $index++; ?>
+        @endforeach
+    @else
+        まだいいねがありません
+    @endif
     
 @endsection

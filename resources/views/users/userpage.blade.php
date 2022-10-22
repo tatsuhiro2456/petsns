@@ -13,14 +13,22 @@
         <h3>ユーザー</h3>
         <p>名前：{{$user->name}}</p>
         <p>誕生日：{{$user->birthday}}</p>
-        <p>ユーザー画像：{{$user->image}}</p>
+        @if($user->image)
+            <p>ユーザー画像：<img src="{{$user->image}}" alt="画像無し"></p>
+        @else
+            <p>ユーザー画像： <img src="https://res.cloudinary.com/dgrrdt1vv/image/upload/v1666174531/ekvllbakoiwm2zwtbfuu.jpg" alt="画像無し"></p>
+        @endif
     </div>
     <div class='pet'>
         <h3>ペット紹介</h3>
         @if($pet)
             <p>ペットの種類：{{$pet->type}}</p>
             <p>ペットの名前：{{$pet->name}}</p>
-            <p>ペット画像：{{$pet->image}}</p>
+            @if($pet->image)
+                <p>ペット画像：<img src="{{$pet->image}}" alt="画像無し"></p>
+            @else
+                <p>ペット画像： <img src=https://res.cloudinary.com/dgrrdt1vv/image/upload/v1666451908/ct10cffq1huqyrlol83z_bng5pr.jpg alt="画像無し"></p>
+            @endif
         @else
             <p>飼育無し</p>
         @endif

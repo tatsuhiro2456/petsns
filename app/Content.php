@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Post;
 use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model

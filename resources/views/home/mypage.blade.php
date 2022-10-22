@@ -12,7 +12,14 @@
         <h3>ユーザー</h3>
         <p>名前：{{Auth::user()->name}}</p>
         <p>誕生日：{{Auth::user()->birthday}}</p>
-        <p>ユーザー画像： <img src="{{Auth::user()->image}}" alt="画像無し"></p>
+        
+        @if(Auth::user()->image)
+            <p>ユーザー画像： <img src="{{Auth::user()->image}}" alt="画像無し"></p>
+        @else
+            <p>ユーザー画像： <img src="https://res.cloudinary.com/dgrrdt1vv/image/upload/v1666174531/ekvllbakoiwm2zwtbfuu.jpg" alt="画像無し"></p>
+        @endif
+        フォロー{{Auth::user()->following->count()}}
+        フォロワー{{Auth::user()->followed->count()}}</a>
     </div>
     
     <div class="pet">
@@ -20,12 +27,17 @@
         @if($pet)
             <p>ペットの種類：{{$pet->type}}</p>
             <p>ペットの名前：{{$pet->name}}</p>
-            <p>ペット画像：{{$pet->image}}</p>
+            @if($pet->image)
+                <p>ペット画像：<img src="{{$pet->image}}" alt="画像無し"></p>
+            @else
+                <p>ペット画像： <img src=https://res.cloudinary.com/dgrrdt1vv/image/upload/v1666451908/ct10cffq1huqyrlol83z_bng5pr.jpg alt="画像無し"></p>
+            @endif
         @else
             <p>飼育無し</p>
         @endif
     </div>
-    <div><a href='/mypage/edit'>登録情報変更</a></div>
+    <div><a href='/mypage/edit'>ユーザー登録情報変更</a></div>
+    <div><a href='/mypage/edit/pet'>ペット登録情報変更</a></div>
     
     <div class="posts">
     @foreach ($posts as $post)

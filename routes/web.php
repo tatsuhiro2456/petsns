@@ -34,6 +34,8 @@ Route::group(['middleware' =>['auth']], function(){
     Route::get('/unlike', 'LikeController@unlike')->name('post_unlike');
     Route::get('/mypage/edit', 'UserController@edit');
     Route::post('/mypage/user/update','UserController@update')->name('user.update');
+    Route::get('/mypage/edit/pet', 'PetController@edit');
+    Route::post('/mypage/pet/update','PetController@update')->name('pet.update');
     Route::get('/walking', 'RecruitmentController@view');
     Route::get('/walking/recruitment', 'RecruitmentController@recruitment');
     Route::post('/walking/recruitment', 'RecruitmentController@store');
@@ -43,4 +45,5 @@ Route::group(['middleware' =>['auth']], function(){
     Route::delete('/walking/reply/{reply}', 'RecruitmentController@reply_destroy');
     #Route::get('/favorite', 'PostController@favorite');
     Route::get('/ranking', 'LikeController@ranking');
+    Route::get('/follow/index', 'PostController@follow');
 });

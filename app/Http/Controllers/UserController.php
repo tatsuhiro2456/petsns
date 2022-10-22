@@ -9,6 +9,7 @@ use Cloudinary;
 use Illuminate\Http\Request;
 
 
+
 class UserController extends Controller
 {
     public function userpage($id)
@@ -31,7 +32,7 @@ class UserController extends Controller
     public function mypage()
     {
         $id = auth()->id();
-        $pet = Pet::find($id);
+        $pet = Pet::where('user_id',$id)->first();
         $posts = Post::where("user_id", "$id")->orderBy('updated_at', 'DESC')->get();
         return view('home/mypage')->with(['pet' => $pet])->with(["posts" => $posts]);
     }
@@ -42,22 +43,30 @@ class UserController extends Controller
         return view('home/edit');
     }
     
-    public function update(Request $request)
+    public function update(UserRequest $request)
     {
         $user = User::find( auth()->id());
         $user->name = $request->name;
         $user->email = $request->email;
         $user->birthday = $request->birthday;
-        $mimetype = $request->file('image')->getMimeType();
         
-        if($mimetype == 'image/jpeg' or $mimetype =='image/png'){
+        #$requestにimageがあるなら画像をアップロードする
+        if($request->file('image')){
+            $mimetype = $request->file('image')->getMimeType();
+            
+            #すでに画像が存在しているなら消去する
+            if($mimetype == 'image/jpeg' or $mimetype =='image/png'){
+                if($user->public_id){
+                    Cloudinary::uploadApi()->Destroy($user->public_id);
+                }
+                
             $user->image = Cloudinary::upload($request->file('image')->getRealPath(), [
                 "height" => 100,
                 "width" => 100,
                 "crop" => "fit"
             ])->getSecurePath();
             $user->public_id = Cloudinary::getPublicId();
-        }
+        }}
         $user->save();
         return redirect('/mypage');
     }

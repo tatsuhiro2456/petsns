@@ -15,8 +15,8 @@ class PetRequest extends FormRequest
     public function messages()
     {
         return [
-            'pet.name.required' => 'コメントを記入してください。',
-            'pet.name.string' => 'コメントを200文字以内で記入してください。',
+            'pet.name.required' => '名前を記入してください。',
+            'pet.name.string' => '名前を200文字以内で記入してください。',
         ];
     }
 }
