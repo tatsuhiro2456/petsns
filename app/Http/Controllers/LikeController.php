@@ -60,7 +60,7 @@ class LikeController extends Controller
         #pet_likesにペットデータといいね合計数を格納
         foreach($dogs as $dog){
         foreach($likes as $like){
-            $array = ['dog_name' => $dog->name, 'total_like' => $like->where('pet_id',$dog->id)->count()];
+            $array = ['dog_name' => $dog->name, 'total_like' => $like->where('pet_id',$dog->id)->count(), 'dog_image' => $dog->image];
         }
             array_push($dog_likes, $array);
         }
@@ -75,7 +75,7 @@ class LikeController extends Controller
         #猫
         foreach($cats as $cat){
         foreach($likes as $like){
-            $array = ['cat_name' => $cat->name, 'total_like' => $like->where('pet_id',$cat->id)->count()];
+            $array = ['cat_name' => $cat->name, 'total_like' => $like->where('pet_id',$cat->id)->count(), 'cat_image' => $cat->image];
         }
             array_push($cat_likes, $array);
         }
