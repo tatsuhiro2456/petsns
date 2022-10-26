@@ -1,4 +1,4 @@
-@extends('layouts.timeline')
+@extends('layouts.master')　　　　　　　　　　　　　　　　　　
 @section('header')
     <header class="masthead" style="background-image: url('/assets/img/timeline.jpg')">
         <div class="container position-relative px-4 px-lg-5">
@@ -10,7 +10,7 @@
                         <a class="link-light" href="/contents/1" ><strong>＃可愛い &emsp;</strong></a>
                         <a class="link-light" href="/contents/2"><strong>＃面白い &emsp;</strong></a>
                         <a class="link-light" href="/contents/3"><strong>＃ペット自慢 &emsp;</strong></a>
-                        <p class="text-primary" style="display:inline;"><strong>フォローユーザー</strong></p><br><br><br>
+                        <p class="text-primary" style="display:inline;"><strong><strong>フォロー中のユーザー</strong></p><br><br><br>
                         <a class="btn btn-outline-light" href='/posts/create' role="button">投稿</a>
                     </div>
                 </div>
@@ -19,8 +19,8 @@
     </header>
 @endsection
 
+
 @section('content')
-<div class="text-center">
     <div class='posts'>
         @foreach ($posts as $post)
             <div class='post'>
@@ -48,5 +48,5 @@
             </div>
         @endforeach
     </div>
-</div>
+
 @endsection

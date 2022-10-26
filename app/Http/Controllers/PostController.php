@@ -35,7 +35,7 @@ class PostController extends Controller
         #Postデータ内でフォローしている人のみのデータを取得
         $posts = Post::whereIn('user_id', $follows_id)->orderBy('updated_at', 'desc')->get();
         
-        return view('home/follow')->with(['posts' => $posts])->with(['user' => $user]);
+        return view('/home/follow')->with(['posts' => $posts])->with(['user' => $user]);
     }
     
     /*public function favorite(User $user, Post $post,Like $like)

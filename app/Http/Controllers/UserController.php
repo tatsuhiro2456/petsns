@@ -70,4 +70,9 @@ class UserController extends Controller
         $user->save();
         return redirect('/mypage');
     }
+    
+    public function test()
+    {
+        return view('test');
+    }
 }

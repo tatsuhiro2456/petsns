@@ -1,105 +1,50 @@
-window.initAutocomplete = function() {
-  //マップの初期設定です。
-  const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 	35.689, lng: 139.692 },
-    zoom: 13,
-    mapTypeId: "hybrid",
-  });
-  const input = document.getElementById("pac-input");
-  const searchBox = new google.maps.places.SearchBox(input);
- ////"SearchBoxクラス"はPlacesライブラリのメソッド。引数はinput(ドキュメント上ではinputFieldとある)。
- ////[https://developers.google.com/maps/documentation/javascript/reference/places-widget#SearchBox]
+@extends('layouts.timeline')
+@section('content')
+<table>
+<tr>
+  <td>検索場所：</td><td><input type="text" id="addressInput" value="近江町市場" style="width: 200px"></td>
+</tr>
+<tr>
+  <td>KeyWord：</td><td><input type="text" id="keywordInput" value="寿司" style="width: 200px"></td>
+</tr>
+<tr>
+  <td>検索範囲：</td>
+  <td>
+    <select id="radiusInput">
+    <option value="200" selected>200 m</option>
+    <option value="500">500 m</option>
+    <option value="800">800 m</option>
+    <option value="1000">1 km</option>
+    <option value="1500">1.5 km</option>
+    <option value="2000">2 km</option>
+    <select>
+  </td>
+</tr>
+<tr>
+  <td colspan="2" style="padding: 10px">
+    <input type="button" value="お店情報取得" onclick="getPlaces();">
+  </td>
+</tr>
+</table>
 
-  map.controls[google.maps.ControlPosition.TOP].push(input);
-  ////"ControlPosition"クラスはコントローラーの位置を定める。
-  ////https://lab.syncer.jp/Web/API/Google_Maps/JavaScript/ControlPosition/
-  ////https://developers.google.com/maps/documentation/javascript/examples/control-positioning
+<div id="mapArea" style="width:100%; height:300px;"></div>
+★結果★<br />
+<div id="results" style="width: 100%; height: 200px; border: 1px dotted; padding: 10px; overflow-y: scroll; background: white;"></div>
+  
+<script src="https://maps.googleapis.com/maps/api/js?key=xxxxxxxxxx=places&callback=initMap" async defer></script>
+<script type="text/javascript">
+var placesList;
 
-  map.addListener("bounds_changed", () => {
-    searchBox.setBounds(map.getBounds());
-  });
-  ////"bound_changed"イベントは(見えてる範囲の地図･ビューポートに変化があったときに発火)
-  ////https://lab.syncer.jp/Web/API/Google_Maps/JavaScript/Map/bounds_changed/ 
-  ////"getBounds"メソッドはビューポートの境界を取得。Mapクラスのメソッド。
-  ////https://lab.syncer.jp/Web/API/Google_Maps/JavaScript/Map/getBounds/
-
-  let markers = [];
-  searchBox.addListener("places_changed", () => {
-  ////"place_chaged"イベントはAutoCompleteクラスのイベント.
-  ////https://developers.google.com/maps/documentation/javascript/reference/places-widget#Autocomplete.place_changed
-
-    const places = searchBox.getPlaces();
-    ////"getPlaces"メソッドはクエリ(検索キーワード)を配列(PlaceResult)で返す。
-    ////https://developers.google.com/maps/documentation/javascript/reference/places-widget#Autocomplete.place_changed
-
-    if (places.length == 0) {
-      return;
-    }
-    // Clear out the old markers.
-    markers.forEach((marker) => {
-      //"forEach"メソッドは引数にある関数へ、Mapオブジェクトのキー/値を順に代入･関数の実行をする。
-        //Mapオブジェクト:
-          //https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map
-      marker.setMap(null);
-      ////setMapメソッドはMarker(Polyline,Circleなど)クラスのメソッド。Markerを指定した位置に配置する。引数nullにすると地図から取り除く。
-    });
-    markers = [];
-    // For each place, get the icon, name and location.
-    const bounds = new google.maps.LatLngBounds();
-    ////"LatLngBounds"クラスは境界を作るインスンタンスを作成。引数は左下、右上の座標。
-    ////https://lab.syncer.jp/Web/API/Google_Maps/JavaScript/LatLngBounds/#:~:text=LatLngBounds%E3%82%AF%E3%83%A9%E3%82%B9%E3%81%AF%E5%A2%83%E7%95%8C(Bounding,%E4%BD%9C%E3%82%8B%E3%81%93%E3%81%A8%E3%82%82%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82
-    places.forEach((place) => {
-      if (!place.geometry) {
-        ////"geometry"はplaceライブラリのメソッド。
-
-        console.log("Returned place contains no geometry");
-        return;
-      }
-      const icon = {
-        url: place.icon,
-        ////"icon"はアイコンを表すオブジェクト。マーカーをオリジナル画像にしたいときなど。
-        ////https://lab.syncer.jp/Web/API/Google_Maps/JavaScript/Icon/
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        ////"Point"クラスはマーカーのラベルなどの位置を決めるインスタンスメソッド。
-        ////https://lab.syncer.jp/Web/API/Google_Maps/JavaScript/Point/
-
-        scaledSize: new google.maps.Size(25, 25),
-      };
-      // Create a marker for each place.
-      markers.push(
-        new google.maps.Marker({
-          map,
-          icon,
-          title: place.name,
-          position: place.geometry.location,
-        })
-      );
-
-      if (place.geometry.viewport) {
-        ////viewport"メソッド
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-        ////"union"メソッドはLatLngBoundsクラスのメソッド。自身の境界に指定した境界を取り込んで合成する。
-        ////https://lab.syncer.jp/Web/API/Google_Maps/JavaScript/LatLngBounds/union/
-      } else {
-        bounds.extend(place.geometry.location);
-        ////"extend"メソッドはLatLngBoundsクラスのメソッド。自身の境界に新しく位置座標を追加する。
-        ////https://lab.syncer.jp/Web/API/Google_Maps/JavaScript/LatLngBounds/extend/
-      }
-    });
-    map.fitBounds(bounds);
-    ////"fitBounds"メソッドはmapクラスのメソッド。指定した境界を見えやすい位置にビューポートを変更する。
-    ////https://lab.syncer.jp/Web/API/Google_Maps/JavaScript/Map/fitBounds/#:~:text=Map.fitBounds()%E3%81%AFMap,%E5%A4%89%E6%9B%B4%E3%81%97%E3%81%A6%E3%81%8F%E3%82%8C%E3%81%BE%E3%81%99%E3%80%82
-
+/*
+ 地図の初期表示
+*/
+function initMap() {
+  new google.maps.Map(document.getElementById("mapArea"), {
+    zoom: 5,
+    center: new google.maps.LatLng(36,138),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 }
-
-
-
-
-var placesList;
 
 /*
  お店情報取得
@@ -136,16 +81,16 @@ function getPlaces(){
 
 /*
  位置情報を使って周辺検索
-  latLng : 位置座標（google.maps.LatLng）
+  latLng : 位置座標インスタンス（google.maps.LatLng）
 */
 function startNearbySearch(latLng){
   
   //読み込み中表示
-  document.getElementById("results").innerHTML = "検索中...";
+  document.getElementById("results").innerHTML = "Now Loading...";
   
   //Mapインスタンス生成
   var map = new google.maps.Map(
-    document.createElement("map"),
+    document.getElementById("mapArea"),
     {
       zoom: 15,
       center: latLng,
@@ -167,7 +112,7 @@ function startNearbySearch(latLng){
     {
       location: latLng,
       radius: radiusInput,
-      type: ["food", "cafe"],
+      type: ['restaurant'],
       keyword: keywordInput,
       language: 'ja'
     },
@@ -198,7 +143,7 @@ function startNearbySearch(latLng){
   pagination : ページネーション
 */
 function displayResults(results, status, pagination) {
-    
+  
   if(status == google.maps.places.PlacesServiceStatus.OK) {
   
     //検索結果をplacesList配列に連結
@@ -210,7 +155,7 @@ function displayResults(results, status, pagination) {
       
       //pagination.nextPageで次の検索結果を表示する
       //※連続実行すると取得に失敗するので、
-      //1秒くらい間隔をおく
+      //  1秒くらい間隔をおく
       setTimeout(pagination.nextPage(), 1000);
     
     //pagination.hasNextPage==falseになったら
@@ -234,7 +179,6 @@ function displayResults(results, status, pagination) {
         return 0;
       });
       
-      
       //placesList配列をループして、
       //結果表示のHTMLタグを組み立てる
       var resultHTML = "<ol>";
@@ -242,15 +186,23 @@ function displayResults(results, status, pagination) {
       for (var i = 0; i < placesList.length; i++) {
         place = placesList[i];
         
-        //ratingがないのものは「---」に表示変更
+        //ratingが-1のものは「---」に表示変更
         var rating = place.rating;
-        if(rating == undefined) rating = "---";
+        if(rating == -1) rating = "---";
         
         //表示内容（評価＋名称）
         var content = "【" + rating + "】 " + place.name;
         
+        //クリック時にMapにマーカー表示するようにAタグを作成
         resultHTML += "<li>";
+        resultHTML += "<a href=\"javascript: void(0);\"";
+        resultHTML += " onclick=\"createMarker(";
+        resultHTML += "'" + place.name + "',";
+        resultHTML += "'" + place.vicinity + "',";
+        resultHTML += place.geometry.location.lat() + ",";
+        resultHTML += place.geometry.location.lng() + ")\">";
         resultHTML += content;
+        resultHTML += "</a>";
         resultHTML += "</li>";
       }
       
@@ -290,10 +242,10 @@ function displayResults(results, status, pagination) {
 function createMarker(name, vicinity, lat, lng){
   
   //マーカー表示する位置のMap表示
-  var map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 13,
+  var map = new google.maps.Map(document.getElementById("mapArea"), {
+    zoom: 15,
     center: new google.maps.LatLng(lat, lng),
-    mapTypeId: google.maps.MapTypeId.HYBRID
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   });
   
   //マーカー表示
@@ -323,3 +275,5 @@ function createMarker(name, vicinity, lat, lng){
     infoWindow.open(map, marker);
   });
 }
+</script>
+@endsection

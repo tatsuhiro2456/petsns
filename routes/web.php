@@ -46,4 +46,6 @@ Route::group(['middleware' =>['auth']], function(){
     #Route::get('/favorite', 'PostController@favorite');
     Route::get('/ranking', 'LikeController@ranking');
     Route::get('/follow/index', 'PostController@follow');
+    
+    Route::get('/test', 'UserController@test');
 });

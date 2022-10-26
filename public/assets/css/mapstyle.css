@@ -27,6 +27,14 @@ body {
   display: inline;
 }
 
+.gmap {
+  position: absolute; /* 親要素のパディング領域に配置 */
+  width: 100%; /* 親コンテナの幅いっぱいに表示 */
+  height: 100%; /* 親コンテナの高さいっぱいに表示 */
+  top: 0;
+  left: 0;
+} 
+
 .pac-card {
   margin: 10px 10px 0 0;
   border-radius: 2px 0 0 2px;

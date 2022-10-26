@@ -62,30 +62,36 @@ class LikeController extends Controller
         foreach($likes as $like){
             $array = ['dog_name' => $dog->name, 'total_like' => $like->where('pet_id',$dog->id)->count(), 'dog_image' => $dog->image];
         }
+            if(isset($array)){
             array_push($dog_likes, $array);
+            }
         }
         #ペットのいいね数（'total_like'）の値を取得
         foreach($dog_likes as $data => $value){
             $dog_sort[$data] = $value["total_like"];
         }
+        if(!empty($dog_likes)){
         #取り出した'total_like'で数が多い順番に$pet_likesを並び替え
         $sorted_array_dog = array_multisort($dog_sort, SORT_DESC, $dog_likes);
-        
+        }
         
         #猫
         foreach($cats as $cat){
         foreach($likes as $like){
             $array = ['cat_name' => $cat->name, 'total_like' => $like->where('pet_id',$cat->id)->count(), 'cat_image' => $cat->image];
         }
+            if(isset($array)){
             array_push($cat_likes, $array);
+            }
         }
         #ペットのいいね数（'total_like'）の値を取得
         foreach($cat_likes as $data => $value){
             $cat_sort[$data] = $value["total_like"];
         }
+        if(!empty($cat_likes)){
         #取り出した'total_like'で数が多い順番に$pet_likesを並び替え
         $sorted_array_cat = array_multisort($cat_sort, SORT_DESC, $cat_likes);
-        
+        }
         return view('home/ranking')->with(['dog_likes' => $dog_likes])->with(['cat_likes' => $cat_likes]);
     }
 }
