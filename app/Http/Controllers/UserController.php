@@ -18,11 +18,11 @@ class UserController extends Controller
         
         //投稿のuserのidがログインユーザーのidと一致していればマイページを、それ以外ならユーザーページを返す
         if($user->id == auth()->id()){
-            $pet = Pet::find($user->id);
+            $pet = Pet::where('user_id',$id)->first();
             $posts = Post::where("user_id", "$user->id")->orderBy('updated_at', 'DESC')->get();
             return view('home/mypage')->with(['pet' => $pet])->with(["posts" => $posts]);
         }else{
-            $pet = Pet::find($user->id);
+            $pet = Pet::where('user_id',$id)->first();
             $posts = Post::where("user_id", "$user->id")->orderBy('updated_at', 'DESC')->get();
             
             return view('users.userpage')->with(['user' => $user])->with(['pet' => $pet])->with(['posts' => $posts]);
@@ -43,7 +43,7 @@ class UserController extends Controller
         return view('home/edit');
     }
     
-    public function update(UserRequest $request)
+    public function update(Request $request)
     {
         $user = User::find( auth()->id());
         $user->name = $request->name;
@@ -61,9 +61,9 @@ class UserController extends Controller
                 }
                 
             $user->image = Cloudinary::upload($request->file('image')->getRealPath(), [
-                "height" => 100,
-                "width" => 100,
-                "crop" => "fit"
+                "height" => 60,
+                "width" => 60,
+                'transformation'=>['width'=>100,'radius'=>'max', 'border'=>'3px_solid_black']
             ])->getSecurePath();
             $user->public_id = Cloudinary::getPublicId();
         }}

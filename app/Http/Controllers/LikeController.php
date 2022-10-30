@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Like;
 use App\Post;
 use App\Pet;
+use App\User;
 use Carbon\Carbon;
 
 class LikeController extends Controller
@@ -60,7 +61,7 @@ class LikeController extends Controller
         #pet_likesにペットデータといいね合計数を格納
         foreach($dogs as $dog){
         foreach($likes as $like){
-            $array = ['dog_name' => $dog->name, 'total_like' => $like->where('pet_id',$dog->id)->count(), 'dog_image' => $dog->image];
+            $array = ['dog_name' => $dog->name, 'total_like' => $like->where('pet_id',$dog->id)->count(), 'dog_image' => $dog->image, 'user_id' => $dog->user_id, 'user' => User::find($dog->user_id)->name];
         }
             if(isset($array)){
             array_push($dog_likes, $array);
@@ -78,7 +79,7 @@ class LikeController extends Controller
         #猫
         foreach($cats as $cat){
         foreach($likes as $like){
-            $array = ['cat_name' => $cat->name, 'total_like' => $like->where('pet_id',$cat->id)->count(), 'cat_image' => $cat->image];
+            $array = ['cat_name' => $cat->name, 'total_like' => $like->where('pet_id',$cat->id)->count(), 'cat_image' => $cat->image, 'user_id' => $cat->user_id, 'user' => User::find($cat->user_id)->name];
         }
             if(isset($array)){
             array_push($cat_likes, $array);

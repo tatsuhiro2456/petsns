@@ -15,45 +15,84 @@
 @endsection
 
 @section('content')
-    <div class="text-center">
-        <h3>今月のいいね取得ペットランキング</h3>
-        <div><h4>＜犬＞<h4></div></br>
-        @if($dog_likes)
+    <h1 class="text-center"><font color="#332524">今月のいいね取得ペットランキング</font></h1><br>
+    <div class="ranking_container">
+        <div class="dog"><h2>＜犬＞<h2></br>
+            @if($dog_likes)
             <?php $index=1; ?>
-            @foreach($dog_likes as $dog_like)
-                <div>{{$index}}位
-                {{$dog_like['dog_name']}}
-                [{{$dog_like['total_like']}}]</br></br>
-                @if($dog_like['dog_image'])
-                    ペット画像：<img src="{{$dog_like['dog_image']}}" alt="画像無し">
-                @else
-                    ペット画像： <img src=https://res.cloudinary.com/dgrrdt1vv/image/upload/v1666451908/ct10cffq1huqyrlol83z_bng5pr.jpg alt="画像無し">
-                @endif
-                </div>
-                <?php $index++; ?>
-            @break($index==11)
-            @endforeach
-        @else
-            まだいいねがありません
-        @endif
-        <div><h4>＜猫＞<h4></div></br>
-        @if($cat_likes)
+            <table  class="table table-bordered border-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">順位</th>
+                        <th scope="col">画像</th>
+                        <th scope="col">名前</th>
+                        <th scope="col">いいね数</th>
+                        <th scope="col">飼い主</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @foreach($dog_likes as $dog_like)
+                    <tr>
+                        <th scope="row">{{$index}}位</th>
+                            <td>
+                                @if($dog_like['dog_image'])
+                                    <img src="{{$dog_like['dog_image']}}" alt="画像無し">
+                                @else
+                                    <img src="https://res.cloudinary.com/dgrrdt1vv/image/upload/v1667130969/pjx07auezdd44d56lldf.jpg" alt="画像無し">
+                                @endif
+                        </td>
+                        <td>{{$dog_like['dog_name']}}</td>
+                        <td>{{$dog_like['total_like']}}</td>
+                        <td><a href="/userpage/{{$dog_like['user_id']}}">{{$dog_like['user']}}</a></td>
+                        <?php $index++; ?>
+                    @break($index==11)
+                    @endforeach
+                    </tr>
+            </table>
+            @else
+                まだいいねがありません
+            @endif
+        </div>
+        
+        <div class="cat"><h2>＜猫＞<h2></br>
+            @if($cat_likes)
             <?php $index=1; ?>
-            @foreach($cat_likes as $cat_like)
-                <div>{{$index}}位
-                {{$cat_like['cat_name']}}
-                [{{$cat_like['total_like']}}]</br></br>
-                @if($cat_like['cat_image'])
-                    ペット画像：<img src="{{$cat_like['cat_image']}}" alt="画像無し">
-                @else
-                    ペット画像： <img src=https://res.cloudinary.com/dgrrdt1vv/image/upload/v1666451908/ct10cffq1huqyrlol83z_bng5pr.jpg alt="画像無し">
-                @endif
-                </div>
-                <?php $index++; ?>
-            @break($index==11)
-            @endforeach
-        @else
-            まだいいねがありません
-        @endif
+            <table  class="table table-bordered border-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">順位</th>
+                        <th scope="col">画像</th>
+                        <th scope="col">名前</th>
+                        <th scope="col">いいね数</th>
+                        <th scope="col">飼い主</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @foreach($cat_likes as $cat_like)
+                    <tr>
+                        <th scope="row">{{$index}}位</th>
+                            <td>
+                                @if($cat_like['cat_image'])
+                                    <img src="{{$cat_like['cat_image']}}" alt="画像無し">
+                                @else
+                                    <img src="https://res.cloudinary.com/dgrrdt1vv/image/upload/v1667130969/pjx07auezdd44d56lldf.jpg" alt="画像無し">
+                                @endif
+                        </td>
+                        <td>{{$cat_like['cat_name']}}</td>
+                        <td>{{$cat_like['total_like']}}</td>
+                        <td><a href="/userpage/{{$cat_like['user_id']}}">{{$cat_like['user']}}</a></td>
+                        <?php $index++; ?>
+                    @break($index==11)
+                    @endforeach
+                    </tr>
+            </table>
+            @else
+                まだいいねがありません
+            @endif
+        </div>
     </div>
+    <hr width="100%">
+    
+
+
 @endsection

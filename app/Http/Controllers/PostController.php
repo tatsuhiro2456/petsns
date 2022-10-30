@@ -58,8 +58,7 @@ class PostController extends Controller
         $post->mimetype = $mimetype;
         if($mimetype == 'video/mp4' or $mimetype =='video/mov'){
             $post->image_path = Cloudinary::uploadVideo($request->file('image_path')->getRealPath(), [
-                "height" => 300,
-                "width" => 600,
+                "width" => 500,
                 "crop" => "fit"
             ])->getSecurePath();
             $post->public_id = Cloudinary::getPublicId();
@@ -73,8 +72,7 @@ class PostController extends Controller
             return redirect('/');
         }elseif($mimetype == 'image/jpeg' or $mimetype =='image/png'){
             $post->image_path = Cloudinary::upload($request->file('image_path')->getRealPath(), [
-                "height" => 300,
-                "width" => 300,
+                "width" => 500,
                 "crop" => "fit"
             ])->getSecurePath();
             $post->public_id = Cloudinary::getPublicId();

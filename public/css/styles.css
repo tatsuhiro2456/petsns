@@ -11247,9 +11247,114 @@ header.masthead .site-heading .h1 {
   }
 }
 
-.left{
-  float: left;
+
+
+.post_container{
+  color: #f1f1f1;
+  display: flex;
+  justify-content: center;
 }
-.right{
-  float: right;
+
+.post_container .image {
+  margin: 0;
+  padding: 0;
+
+}
+.post_container .image img {
+  width: 100%;
+  height: auto;
+}
+.post_container .right {
+  margin: 0 0 0 20px;
+  padding: 0;
+}
+.post_container .user {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+.post_container .body {
+  margin: 10px 0 0;
+  padding: 0;
+  overflow-wrap: normal;
+}
+
+.like{
+  margin: 20px 0 0 0;
+}
+
+.comment_btn{
+  margin: 20px 0 0 0;
+}
+
+hr{
+  background-color: #426579;
+}
+
+.btn_container{
+  display: flex;
+}
+
+.btn_container .like{
+  margin: 10px 0 20px 0;
+}
+
+.btn_container .comment_btn{
+  margin: 10px 0 0 20px;
+}
+
+.user_container{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.profile{
+    display: flex;
+}
+
+.profile .name{
+  margin: 10px 0  0 10px;
+}
+
+.user{
+  margin: 0 100px 0 100px ;
+}
+
+
+ .pet{
+   margin: 0 100px 0 100px ;
+ }
+ 
+ .ranking_container{
+  color: #332524;
+  display: flex;
+  justify-content: center;
+ }
+ 
+ .dog{
+  margin: 0 150px 0 150px ;
+}
+
+
+ .cat{
+   margin: 0 150px 0 150px ;
+ }
+ 
+ .rank{
+  display:inline;
+}
+
+.comment{
+      overflow-wrap: normal;
+}
+
+.create{
+  margin: 150px 300px 0 0;
+  text-align: center;
+}
+.create .create_body{
+  display: inline-block;
+  text-align: left;
 }

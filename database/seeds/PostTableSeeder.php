@@ -15,7 +15,7 @@ class PostTableSeeder extends Seeder
         [
             [
                 'body' => '犬の名前はハチです',
-                'image_path' => 'https://res.cloudinary.com/dgrrdt1vv/image/upload/v1666174510/ltpo0mkkcf5aeay0ugsy.jpg',
+                'image_path' => 'https://res.cloudinary.com/dgrrdt1vv/image/upload/v1667127529/fnl9i8eyq3nnns99g6d8.jpg',
                 'user_id' => '1',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
@@ -23,14 +23,14 @@ class PostTableSeeder extends Seeder
             ],
             [
                 'body' =>'猫の名前はトラキチです',
-                'image_path' =>'https://res.cloudinary.com/dgrrdt1vv/image/upload/v1664107258/neko_gydzat.jpg',
+                'image_path' =>'https://res.cloudinary.com/dgrrdt1vv/image/upload/v1667127541/ljbqroqeitbe2kg8hpem.jpg',
                 'user_id'=> '2',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),       
             ],
             [
                 'body' => '犬の名前はケンです',
-                'image_path' => 'https://res.cloudinary.com/dgrrdt1vv/image/upload/v1666174497/noisuoukdy5mbbpclcqu.jpg',
+                'image_path' => 'https://res.cloudinary.com/dgrrdt1vv/image/upload/v1667127503/ctefu9ee2z1oulm1p04v.jpg',
                 'user_id' => '3',
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),

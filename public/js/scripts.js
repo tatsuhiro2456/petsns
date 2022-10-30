@@ -27,3 +27,12 @@ window.addEventListener('DOMContentLoaded', () => {
         scrollPos = currentTop;
     });
 })
+
+function deletePost(e) {
+    'use strict';
+    if(window.confirm('削除すると復元できません。\n本当に削除しますか？')){
+        document.getElementBy('form_delete').submit();
+    }else{ 
+    return false; 
+  } 
+}

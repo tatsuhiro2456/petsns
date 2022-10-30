@@ -52,9 +52,9 @@ class PetController extends Controller
                     }
                     
                 $pet->image = Cloudinary::upload($request->file('image')->getRealPath(), [
-                    "height" => 100,
-                    "width" => 100,
-                    "crop" => "fit"
+                    "height" => 60,
+                    "width" => 60,
+                    'transformation'=>['width'=>100,'radius'=>'max', 'border'=>'3px_solid_black']
                 ])->getSecurePath();
                 $pet->public_id = Cloudinary::getPublicId();
             }}
@@ -77,9 +77,9 @@ class PetController extends Controller
                     }
                     
                 $pet->image = Cloudinary::upload($request->file('image')->getRealPath(), [
-                    "height" => 100,
-                    "width" => 100,
-                    "crop" => "fit"
+                    "height" => 60,
+                    "width" => 60,
+                    'transformation'=>['width'=>100,'radius'=>'max', 'border'=>'3px_solid_black']
                 ])->getSecurePath();
                 $pet->public_id = Cloudinary::getPublicId();
             }}

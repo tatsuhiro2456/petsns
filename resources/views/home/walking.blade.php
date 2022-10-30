@@ -7,6 +7,7 @@
                     <div class="site-heading">
                         <h1>DoggieCat</h1>
                         <span class="subheading">犬散歩掲示板</span></br>
+                        <a class="btn btn-outline-light " href='/walking/recruitment' role="button">投稿</a>
                     </div>
                 </div>
             </div>
@@ -16,7 +17,6 @@
 
 @section('content')
     <div class="text-center">
-        <div>[<a href='/walking/recruitment'>投稿</a>]</div>
         <div class='recruitments'>
             @foreach ($recruitments as $recruitment)
                 <div class='recruitment'>
