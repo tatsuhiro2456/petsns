@@ -54,7 +54,6 @@ class LikeController extends Controller
         }else{
             $end = $today.'-31 23:59:59';
         }
-        dd($end);
         #今月、ペットが写っている投稿にいいねしてくれたデータを取得
         $likes = $like::where('created_at', '>',$start)->where('created_at', '<', $end)->get();
         
