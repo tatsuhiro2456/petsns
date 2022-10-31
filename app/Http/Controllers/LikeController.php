@@ -43,12 +43,21 @@ class LikeController extends Controller
     public function ranking(Pet $pet, Like $like)
     {
         #月間のデータを取得するために今月の月初めと月末を定義
+        $today_month = Carbon::now()->format('m');
         $today = Carbon::now()->format('Y-m');
         $start = $today.'-01 00:00:00';
-        $end = $today.'-31 23:59:59';
         
+        if($today_month == 4 or $today_month == 6 or $today_month == 9 or $today_month == 11){
+            $end = $today.'-30 23:59:59';
+        }elseif($today_month == 2){
+            $end = $today.'-28 23:59:59';
+        }else{
+            $end = $today.'-31 23:59:59';
+        }
+        dd($end);
         #今月、ペットが写っている投稿にいいねしてくれたデータを取得
         $likes = $like::where('created_at', '>',$start)->where('created_at', '<', $end)->get();
+        
         #ペットデータを取得
         $dogs = Pet::where('type', '=', 'dog')->get();
         $cats = Pet::where('type', '=', 'cat')->get();
