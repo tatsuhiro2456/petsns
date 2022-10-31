@@ -58,12 +58,7 @@
         @yield('content')
         <!-- Footer-->
         <footer >
-
-
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; DoggieCat 2022</div>
-                    
-
-
+            <div class="small text-center text-muted fst-italic">Copyright &copy; DoggieCat 2022</div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

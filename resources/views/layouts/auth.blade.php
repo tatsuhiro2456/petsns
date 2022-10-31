@@ -22,9 +22,8 @@
         
     </head>
     <body>
-
         <!-- Navigation-->
-        <div >
+        <div id="app">
             <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
                 <div class="container px-4 px-lg-5">
                     <a class="navbar-brand" href="/">DoggieCat</a>
@@ -72,7 +71,7 @@
                     </ul>
                 </div>
             </nav>
-        </app>
+        </div>
         @yield('header')
         <!-- Page Header-->
         
@@ -81,6 +80,6 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="{{asset('js/auth_script.js')}}"></script>
+        <script src="{{asset('js/auth_script.js')}}" defer></script>
     </body>
 </html>

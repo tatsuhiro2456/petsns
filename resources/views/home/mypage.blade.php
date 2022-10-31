@@ -97,15 +97,17 @@
                             <button type="submit" class="btn btn-warning btn-sm" onclick="return deletePost(this);">投稿削除</button>
                         </form>
                         <div class='comment'>
-                            <br>＜コメント＞<br>
+                            @if(!empty($post->comment))
+                                ＜コメント＞<br>
+                            @endif
                             @foreach($post->comments as $comment)
-                                ユーザー : <a href="/userpage/{{$comment->user_id}}">{{$comment->user->name}}</a><br>
                                 {{$comment->body}}<br>
+                                 <font size="3">ユーザー : <a href="/userpage/{{$comment->user_id}}">{{$comment->user->name}}</a></font><br>
                                 @if($comment->user->id == auth()->user()->id)
                                     <form action='/posts/comment/{{$comment->id}}' id="form_{{ $comment->id }}" method="post" style="display:inline">
                                         @csrf
                                         @method('DELETE')
-                                        <h5><button type="submit" class="btn btn-warning btn-sm" onclick="return deletePost(this);">コメント削除</button></h5> 
+                                        <button type="submit" class="btn btn-outline-warning btn-sm" onclick="return deletePost(this);">コメント削除</button> 
                                     </form>
                                 @endif
                                 <hr width="400">

@@ -12,7 +12,7 @@ class RecruitmentController extends Controller
 {
     public function view(Recruitment $recruitment)
     {
-        return view('home/walking')->with(['recruitments' => $recruitment->get()]);
+        return view('home/walking')->with(['recruitments' => $recruitment->getorderBy()]);
     }
     
     public function recruitment()

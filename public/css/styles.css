@@ -11358,3 +11358,28 @@ hr{
   display: inline-block;
   text-align: left;
 }
+
+.recruitment_container{
+  display: flex;
+  justify-content: center;
+}
+
+.recruitment_container .body{
+  margin: 0 10px 0 0px;
+  padding: 0;
+}
+
+.recruitment_container .reply {
+  margin: 0 0px 0 10px;
+  padding: 0;
+  color: white;
+}
+
+.register{
+  margin: 150px 300px 0 0;
+  text-align: center;
+}
+.register .register_center{
+  display: inline-block;
+  text-align: left;
+}

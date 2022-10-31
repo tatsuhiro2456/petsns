@@ -23,4 +23,7 @@ class Recruitment extends Model
         return $this->hasMany('App\Reply');
     }
     
+    public function getorderBy(){
+        return $this::orderBy('updated_at', 'desc')->get();
+    }
 }

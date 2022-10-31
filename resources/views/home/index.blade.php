@@ -55,15 +55,17 @@
                                 <div class="comment_btn"><a href='/posts/{{$post->id}}/comment' type="button" class="btn btn-primary btn-sm">コメント</a></div> 
                             </div>
                             <div class='comment'>
-                                ＜コメント＞<br>
+                                @if(!empty($post->comment))
+                                    ＜コメント＞<br>
+                                @endif
                                 @foreach($post->comments as $comment)
-                                    ユーザー : <a href="/userpage/{{$comment->user_id}}">{{$comment->user->name}}</a><br>
                                     {{$comment->body}}<br>
+                                    <font size="3">ユーザー : <a href="/userpage/{{$comment->user_id}}">{{$comment->user->name}}</a></font><br>
                                     @if($comment->user->id == auth()->user()->id)
                                         <form action='/posts/comment/{{$comment->id}}' id="form_{{ $comment->id }}" method="post" style="display:inline">
                                             @csrf
                                             @method('DELETE')
-                                            <h5><button type='submit' class="btn btn-warning btn-sm" onclick="deletePost(this);return false;">コメント削除</button></h5> 
+                                            <h5><button type='submit' class="btn btn-outline-warning btn-sm" onclick="deletePost(this);return false;">コメント削除</button></h5> 
                                         </form>
                                     @endif
                                     <hr width="400">
