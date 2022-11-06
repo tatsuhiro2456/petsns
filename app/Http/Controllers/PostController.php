@@ -38,7 +38,8 @@ class PostController extends Controller
         return view('/home/follow')->with(['posts' => $posts])->with(['user' => $user]);
     }
     
-    /*public function favorite(User $user, Post $post,Like $like)
+    /*投稿のいいねランキング
+    public function favorite(User $user, Post $post,Like $like)
     {
         return view('home/favorite')->with(['posts' => $post->Ranking()]);
     }*/
