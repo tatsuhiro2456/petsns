@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PetRequest;
 use App\Pet;
 use App\User;
 use Cloudinary;
-use App\Http\Requests\PetRequest;
 use Illuminate\Support\Facades\Auth;
 
 class PetController extends Controller
@@ -24,6 +24,7 @@ class PetController extends Controller
         return redirect('/');
     }
     
+    #編集画面を表示
     public function edit()
     {
         $id = auth()->id();

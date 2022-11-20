@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Recruitment;
 use App\Reply;
 use App\Http\Requests\RecruitmentRequest;
 use App\Http\Requests\ReplyRequest;
+use Illuminate\Http\Request;
 
 class RecruitmentController extends Controller
 {

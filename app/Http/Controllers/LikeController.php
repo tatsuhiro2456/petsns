@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Like;
 use App\Post;
 use App\Pet;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {

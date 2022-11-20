@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Content;
-use App\User;
-use App\Like;
-use App\Post;
-use App\Follow;
 use App\Comment;
+use App\Content;
+use App\Follow;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\CommentRequest;
+use App\Like;
+use App\Post;
+use App\User;
 use Cloudinary;
 
 class PostController extends Controller
@@ -38,12 +38,7 @@ class PostController extends Controller
         return view('/home/follow')->with(['posts' => $posts])->with(['user' => $user]);
     }
     
-    /*投稿のいいねランキング
-    public function favorite(User $user, Post $post,Like $like)
-    {
-        return view('home/favorite')->with(['posts' => $post->Ranking()]);
-    }*/
-    
+    #投稿を作成する
     public function create(Content $content, User $user)
     {
         $user=auth()->user();
