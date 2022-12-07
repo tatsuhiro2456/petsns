@@ -64,12 +64,16 @@ class LikeController extends Controller
         $dog_likes = [];
         $cat_likes = [];
         
+        #foreach($dogs as $dog){
+        #    dd($likes->where('pet_id', $dog->id)->count());
+        #}
+        
         
         #犬
         #pet_likesにペットデータといいね合計数を格納
         foreach($dogs as $dog){
         foreach($likes as $like){
-            $array = ['dog_name' => $dog->name, 'total_like' => $like->where('pet_id',$dog->id)->count(), 'dog_image' => $dog->image, 'user_id' => $dog->user_id, 'user' => User::find($dog->user_id)->name];
+            $array = ['dog_name' => $dog->name, 'total_like' => $likes->where('pet_id', $dog->id)->count(), 'dog_image' => $dog->image, 'user_id' => $dog->user_id, 'user' => User::find($dog->user_id)->name];
         }
             if(isset($array)){
             array_push($dog_likes, $array);
@@ -87,7 +91,7 @@ class LikeController extends Controller
         #猫
         foreach($cats as $cat){
         foreach($likes as $like){
-            $array = ['cat_name' => $cat->name, 'total_like' => $like->where('pet_id',$cat->id)->count(), 'cat_image' => $cat->image, 'user_id' => $cat->user_id, 'user' => User::find($cat->user_id)->name];
+            $array = ['cat_name' => $cat->name, 'total_like' => $likes->where('pet_id',$cat->id)->count(), 'cat_image' => $cat->image, 'user_id' => $cat->user_id, 'user' => User::find($cat->user_id)->name];
         }
             if(isset($array)){
             array_push($cat_likes, $array);
