@@ -20,7 +20,7 @@
             <h2>ユーザー</h2>
             <div class="profile">
                 @if($user->image)
-                    <img src="{{$user->image}}" alt="画像無し">
+                    <img src="{{$user->image}}" alt="https://res.cloudinary.com/dgrrdt1vv/image/upload/v1667129479/iweftskvwuu51umwt3mt.jpg">
                 @else
                     <img src="https://res.cloudinary.com/dgrrdt1vv/image/upload/v1667129479/iweftskvwuu51umwt3mt.jpg" alt="画像無し">
                 @endif
