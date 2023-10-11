@@ -9,7 +9,7 @@ class CreateRecruitmentsTable extends Migration
     public function up()
     {
         Schema::create('recruitments', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('body');

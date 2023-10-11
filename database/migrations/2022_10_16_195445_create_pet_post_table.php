@@ -14,7 +14,7 @@ class CreatePetPostTable extends Migration
     public function up()
     {
         Schema::create('pet_post', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('pet_id');
             $table->unsignedBigInteger('post_id');
 

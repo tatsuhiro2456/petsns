@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Pet;
-use App\Post;
+use App\Models\User;
+use App\Models\Pet;
+use App\Models\Post;
 use Cloudinary;
 use Illuminate\Http\Request;
 

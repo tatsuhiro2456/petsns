@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Like;
-use App\Post;
-use App\Pet;
-use App\User;
+use App\Models\Like;
+use App\Models\Post;
+use App\Models\Pet;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
