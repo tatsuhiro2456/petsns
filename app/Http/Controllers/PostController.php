@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
-use App\Content;
-use App\Follow;
+use App\Models\Comment;
+use App\Models\Content;
+use App\Models\Follow;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\CommentRequest;
-use App\Like;
-use App\Post;
-use App\User;
+use App\Models\Like;
+use App\Models\Post;
+use App\Models\User;
 use Cloudinary;
 
 class PostController extends Controller
@@ -111,9 +111,18 @@ class PostController extends Controller
         return redirect('/');
     }
     
-    public function comment_destroy($id)
+    //public function comment_destroy($id)
+    //{
+    //    dd($id);
+    //    $comment = Comment::find($id);
+    //    $comment->delete();
+    //    
+    //    return redirect('/');
+    //}
+    
+    public function comment_destroy(Comment $comment)
     {
-        $comment = Comment::find($id);
+     dd($comment);   
         $comment->delete();
         
         return redirect('/');

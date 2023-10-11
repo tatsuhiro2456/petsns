@@ -9,7 +9,7 @@ class CreatePostUserTable extends Migration
     public function up()
     {
         Schema::create('post_user', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

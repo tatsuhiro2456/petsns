@@ -11253,20 +11253,17 @@ header.masthead .site-heading .h1 {
   color: #f1f1f1;
   display: flex;
   justify-content: center;
-}
-
-.post_container .image {
-  margin: 0;
-  padding: 0;
-
-}
-.post_container .image img {
   width: 100%;
+}
+
+.post_container .image img {
+  width: 200px;
   height: auto;
 }
 .post_container .right {
   margin: 0 0 0 20px;
   padding: 0;
+  width: 200px;
 }
 .post_container .user {
   margin: 0;

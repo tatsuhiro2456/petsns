@@ -9,7 +9,7 @@ class CreatePetsTable extends Migration
     public function up()
     {
         Schema::create('pets', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name',15);
             $table->string('type');
             $table->string('image')->nullable();

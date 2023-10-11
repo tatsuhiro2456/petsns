@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PetRequest;
-use App\Pet;
-use App\User;
+use App\Models\Pet;
+use App\Models\User;
 use Cloudinary;
 use Illuminate\Support\Facades\Auth;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Content;
+use App\Models\Content;
 use Illuminate\Http\Request;
 
 class ContentController extends Controller

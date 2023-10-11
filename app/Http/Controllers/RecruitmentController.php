@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Recruitment;
-use App\Reply;
+use App\Models\Recruitment;
+use App\Models\Reply;
 use App\Http\Requests\RecruitmentRequest;
 use App\Http\Requests\ReplyRequest;
 use Illuminate\Http\Request;
