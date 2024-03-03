@@ -122,7 +122,6 @@ class PostController extends Controller
     
     public function comment_destroy(Comment $comment)
     {
-     dd($comment);   
         $comment->delete();
         
         return redirect('/');
